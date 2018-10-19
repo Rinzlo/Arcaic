@@ -1,5 +1,5 @@
 <?php
-define('DATABASE', 'forum');
+define('DATABASE', 'DB');
 define('USER', 'root');
 define('PASSWORD', 'root');
 define('HOST', 'localhost');
