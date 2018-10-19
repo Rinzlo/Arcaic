@@ -6,8 +6,8 @@
 
     }
 
-    $object = new NewClass;
-
-    var_dump($object);
+    // include_once "MVC/includes/newclass.inc.php";
+    // $obj = new NewClass;
+    // echo ("obj: " . $obj->info);
 
 ?>

@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 //include_once "/Applications/MAMP/htdocs/forum/constants.php";
 include_once "db.php";
 include_once "functions.php";
@@ -13,7 +14,9 @@ if(!isset($_GET['parent'])){
 }
 
 echo "<br>";
+
 user();
+
 
 ?>
 
