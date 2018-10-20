@@ -68,7 +68,7 @@ function displayPosts($connection, $parent = null)
 {
     if ($parent) {
         ?><h1>PARENT</h1><?php
-$query = "SELECT * FROM posts WHERE id = '$parent'";
+    $query = "SELECT * FROM posts WHERE id = '$parent'";
 
         $post = mysqli_fetch_assoc(mysqli_query($connection, $query));
 
@@ -97,7 +97,7 @@ $query = "SELECT * FROM posts WHERE id = '$parent'";
         ?><BLOCKQUOTE><?php
 
         ?><h1>POST</h1><?php
-displayPost($connection, $post, $parent);
+    displayPost($connection, $post, $parent);
         ?><br><br><br><?php
 
         ?></BLOCKQUOTE><?php
