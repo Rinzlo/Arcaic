@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use Core\View;
+use Couchbase\UserSettings;
 
 class Password extends \Core\Controller
 {
@@ -26,5 +27,17 @@ class Password extends \Core\Controller
         User::sendPasswordReset($_POST['email']);
 
         View::renderTemplate('Password/reset_requested.html.twig');
+    }
+
+    /**
+     * Show the reset password form
+     */
+    public function resetAction(): void
+    {
+        $token = $this->route_params['token'];
+
+        $user = User::findByPasswordReset($token);
+
+        var_dump($user);
     }
 }

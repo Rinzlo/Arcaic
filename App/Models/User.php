@@ -80,6 +80,10 @@ class User extends Model
             $this->errors[] = 'email already taken';
         }
 
+        if($this->password != $this->password_confirmation) {
+            $this->errors[] = 'Password must match confirmation';
+        }
+
         if(strlen($this->password) < 6){
             $this->errors[] = 'Please enter at least 6 characters for the password';
         }
@@ -231,5 +235,36 @@ class User extends Model
         $html = View::getTemplate('Password/reset_email.html.twig', ['url' => $url]);
 
         Mail::send($this->email, 'Password reset', $text, $html);
+    }
+
+    /**
+     * Find a user model by password reset token and expiry
+     */
+    public static function findByPasswordReset(string $token)
+    {
+        $token = new Token($token);
+        $hashed_token = $token->getHash();
+
+        $sql = 'SELECT * FROM users
+                WHERE password_reset_hash = :token_hash';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        $user = $stmt->fetch();
+
+        if($user){
+            if(strtotime($user->password_reset_expires_at) > time()){
+
+                return $user;
+
+            }
+        }
     }
 }
