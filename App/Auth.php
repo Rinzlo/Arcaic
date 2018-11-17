@@ -20,7 +20,7 @@ class Auth
 		if ($remember_me){
 			if($user->rememberLogin()){
 				
-				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/');
+				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/'.Config::APP_NAME);
 			}
 		}
 	}

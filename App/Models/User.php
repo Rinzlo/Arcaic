@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Config;
+use App\Mail;
 use App\Token;
+use Core\View;
 use PDO;
 use Core\Model;
 
 /**
  * @property string remember_token
  * @property float|int expirey_timestamp
+ * @property string password_reset_token
  */
 class User extends Model
 {
@@ -175,5 +179,57 @@ class User extends Model
 	    $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $this->expirey_timestamp), PDO::PARAM_STR);
 	    
 	    return $stmt->execute();
+    }
+
+    /**
+     * Send password reset instructions to the user specified
+     */
+    public static function sendPasswordReset(string $email): void
+    {
+        $user = static::findByEmail($email);
+
+        if($user){
+            if($user->startPasswordReset()){
+
+                $user->sendPasswordResetEmail();
+
+            }
+        }
+    }
+
+    /**
+     * Start the password reset process by generating a new token and expiry
+     */
+    protected function startPasswordReset()
+    {
+        $token = new Token();
+        $hashed_token = $token->getHash();
+        $this->password_reset_token = $token->getValue();
+
+        $expiry_timestamp = time() + 60 * 60 * 2;   // 2 hours from now
+
+        $sql = 'UPDATE users
+                SET password_reset_hash = :token_hash,
+                    password_reset_expires_at = :expires_at
+                WHERE id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $expiry_timestamp), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    protected function sendPasswordResetEmail(): void
+    {
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . Config::APP_NAME . '/password/reset/' . $this->password_reset_token;
+
+        $text = View::getTemplate('Password/reset_email.txt.twig', ['url' => $url]);
+        $html = View::getTemplate('Password/reset_email.html.twig', ['url' => $url]);
+
+        Mail::send($this->email, 'Password reset', $text, $html);
     }
 }

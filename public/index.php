@@ -22,6 +22,10 @@ set_exception_handler('Core\Error::exceptionHandler');
 
 session_start();
 
+//var_dump($_COOKIE['remember_me']);
+//var_dump($_SESSION);
+//var_dump(session_get_cookie_params());
+
 /**
  * Routing
  */

@@ -45,6 +45,23 @@ class View
      */
     public static function renderTemplate(string $template, array $args = []): void
     {
+        echo static::getTemplate($template, $args);
+    }
+
+    /**
+     * Get a view template using Twig
+     *
+     * @param string $template
+     * @param array $args
+     *
+     * @return string
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public static function getTemplate(string $template, array $args = [])
+    {
         static $twig = null;
 
         if($twig === null){
@@ -55,6 +72,6 @@ class View
             $twig->addGlobal('app', '/'.Config::APP_NAME);
         }
 
-        echo $twig->render($template, $args);
+        return $twig->render($template, $args);
     }
 }
