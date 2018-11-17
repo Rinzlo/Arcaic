@@ -22,7 +22,7 @@ class Auth
 		if ($remember_me){
 			if($user->rememberLogin()){
 				
-				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/'.Config::APP_NAME);
+				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/');
 			}
 		}
 	}
@@ -66,7 +66,7 @@ class Auth
 	 */
 	public static function getReturnToPage()
 	{
-		return $_SESSION['return_to'] ?? '/'.Config::APP_NAME;
+		return $_SESSION['return_to'] ?? '/';
 	}
 	
 	/**

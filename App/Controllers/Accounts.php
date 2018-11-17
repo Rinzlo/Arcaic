@@ -57,7 +57,7 @@ class Accounts extends \Core\Controller
     {
     	Auth::logout();
     	
-    	$this->redirect('/'.Config::APP_NAME.'/accounts/show-logout-message');
+    	$this->redirect('/accounts/show-logout-message');
     }
 	
 	/**
@@ -69,7 +69,7 @@ class Accounts extends \Core\Controller
     {
 	    Flash::addMessage('Logout successful');
 	
-	    $this->redirect('/'.Config::APP_NAME);
+	    $this->redirect('/');
     }
 
     // Registration
@@ -109,7 +109,7 @@ class Accounts extends \Core\Controller
 
             $user->sendActivationEmail();
 
-            $this->redirect('/'.Config::APP_NAME.'/accounts/success');
+            $this->redirect('/accounts/success');
 
         }else {
             View::renderTemplate('Accounts/register.html.twig', [
@@ -133,7 +133,7 @@ class Accounts extends \Core\Controller
     {
         User::activate($this->route_params['token']);
 
-        $this->redirect('/'.Config::APP_NAME.'/accounts/activated');
+        $this->redirect('/accounts/activated');
     }
 
     /**

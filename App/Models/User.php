@@ -253,7 +253,7 @@ class User extends Model
      */
     protected function sendPasswordResetEmail(): void
     {
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . Config::APP_NAME . '/password/reset/' . $this->password_reset_token;
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/reset/' . $this->password_reset_token;
 
         $text = View::getTemplate('Password/reset_email.txt.twig', ['url' => $url]);
         $html = View::getTemplate('Password/reset_email.html.twig', ['url' => $url]);
@@ -329,7 +329,7 @@ class User extends Model
      */
     public function sendActivationEmail(): void
     {
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . Config::APP_NAME . '/accounts/activated/' . $this->activation_token;
+        $url = 'http://' . $_SERVER['HTTP_HOST']. '/accounts/activated/' . $this->activation_token;
 
         $text = View::getTemplate('Accounts/activation_email.txt.twig', ['url' => $url]);
         $html = View::getTemplate('Accounts/activation_email.html.twig', ['url' => $url]);

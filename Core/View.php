@@ -69,7 +69,7 @@ class View
             $twig = new \Twig_Environment($loader);
             $twig->addGlobal('current_user', Auth::getUser());
             $twig->addGlobal('flash_messages', \App\Flash::getMessages());
-            $twig->addGlobal('app', '/'.Config::APP_NAME);
+            $twig->addGlobal('app', '');
         }
 
         return $twig->render($template, $args);
