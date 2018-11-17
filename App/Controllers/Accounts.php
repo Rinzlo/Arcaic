@@ -94,6 +94,8 @@ class Accounts extends \Core\Controller
 
         if($user->save()) {
 
+            $user->sendActivationEmail();
+
             $this->redirect('/'.Config::APP_NAME.'/accounts/success');
 
         }else {
@@ -103,8 +105,29 @@ class Accounts extends \Core\Controller
         }
     }
 
+    /**
+     * Show the registration success page
+     */
     public function successAction(): void
     {
         View::renderTemplate('Accounts/registered.html.twig');
+    }
+
+    /**
+     * Activate a new account
+     */
+    public function activateAction(): void
+    {
+        User::activate($this->route_params['token']);
+
+        $this->redirect('/'.Config::APP_NAME.'/accounts/activated');
+    }
+
+    /**
+     * Show the activation success page
+     */
+    public function activatedAction(): void
+    {
+        View::renderTemplate('Accounts/activated.html.twig');
     }
 }

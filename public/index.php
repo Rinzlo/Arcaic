@@ -25,6 +25,7 @@ session_start();
 //var_dump($_COOKIE['remember_me']);
 //var_dump($_SESSION);
 //var_dump(session_get_cookie_params());
+//var_dump($_SERVER);
 
 /**
  * Routing
@@ -36,6 +37,7 @@ $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' => 'Accounts', 'action' => 'login']);
 $router->add('logout', ['controller' => 'Accounts', 'action' => 'logout']);
 $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
+$router->add('accounts/activated/{token:[\da-f]+}', ['controller' => 'Accounts', 'action' => 'activate']);
 $router->add('{controller}/{action}');
 
 
