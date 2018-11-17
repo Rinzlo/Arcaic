@@ -9,6 +9,7 @@ use App\Config;
 use App\Flash;
 use App\Models\User;
 use Core\View;
+use Securimage;
 
 class Accounts extends \Core\Controller
 {
@@ -85,7 +86,19 @@ class Accounts extends \Core\Controller
 
     public function registerAction(): void
     {
-        View::renderTemplate('Accounts/register.html.twig');
+
+        $img = new Securimage();
+        $img->code_length = 6;
+        $img->num_lines   = 5;
+        $img->noise_level = 5;
+
+//        $img = new Securimage();
+
+
+        View::renderTemplate('Accounts/register.html.twig', [
+            'image' => $img->show(),
+            'html' => Securimage::getCaptchaHtml(),
+        ]);
     }
 
     public function createAction(): void

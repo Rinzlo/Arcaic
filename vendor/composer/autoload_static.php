@@ -25,6 +25,7 @@ class ComposerStaticInit5471aff3078cc1ccde390e36c3a78062
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Securimage\\' => 11,
         ),
         'P' => 
         array (
@@ -68,6 +69,10 @@ class ComposerStaticInit5471aff3078cc1ccde390e36c3a78062
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Securimage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dapphp/securimage',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -134,12 +139,18 @@ class ComposerStaticInit5471aff3078cc1ccde390e36c3a78062
         ),
     );
 
+    public static $classMap = array (
+        'Securimage' => __DIR__ . '/..' . '/dapphp/securimage/securimage.php',
+        'Securimage_Color' => __DIR__ . '/..' . '/dapphp/securimage/securimage.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit5471aff3078cc1ccde390e36c3a78062::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5471aff3078cc1ccde390e36c3a78062::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit5471aff3078cc1ccde390e36c3a78062::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5471aff3078cc1ccde390e36c3a78062::$classMap;
 
         }, null, ClassLoader::class);
     }
