@@ -15,6 +15,7 @@ use Core\Model;
  * @property string remember_token
  * @property float|int expirey_timestamp
  * @property string password_reset_token
+ * @property string password
  */
 class User extends Model
 {
@@ -76,7 +77,7 @@ class User extends Model
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
             $this->errors[] = 'Invalid email';
         }
-        if(static::emailExists($this->email)){
+        if(static::emailExists($this->email, $this->id ?? null)){
             $this->errors[] = 'email already taken';
         }
 
@@ -98,12 +99,18 @@ class User extends Model
     }
 
     /**
-     * @param $email
+     * @param string $email
      * @return bool
      */
-    public static function emailExists(string $email): bool
+    public static function emailExists(string $email, $ignore_id = null): bool
     {
-        return static::findByEmail($email) !== false;
+        $user = static::findByEmail($email);
+
+        if($user)
+            if($user->id != $ignore_id)
+                return true;
+
+        return false;
     }
 	
 	/**
@@ -266,5 +273,37 @@ class User extends Model
 
             }
         }
+    }
+
+    /**
+     * Reset the password
+     */
+    public function resetPassword(string $password, string $password_confirmation): bool
+    {
+        $this->password = $password;
+        $this->password_confirmation = $password_confirmation;
+
+        $this->validate();
+
+        if(empty($this->errors)) {
+
+            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+
+            $sql = 'UPDATE users
+                    SET password = :password_hash,
+                        password_reset_hash = NULL,
+                        password_reset_expires_at = NULL
+                    WHERE id = :id';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+
+            return $stmt->execute();
+        }
+
+        return false;
     }
 }
