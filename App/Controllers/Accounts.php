@@ -96,7 +96,7 @@ class Accounts extends \Core\Controller
 
 
         View::renderTemplate('Accounts/register.html.twig'); //, [
-//            'image' => $img->show(),
+//            'image' => $img,
 //            'html' => Securimage::getCaptchaHtml(),
 //        ]);
     }

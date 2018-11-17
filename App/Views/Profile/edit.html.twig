@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Sign up{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block footer %}
     <script src="{{ app }}/js/hideShowPassword.min.js"></script>
@@ -11,7 +11,7 @@
             /**
              * sets up validation on our form
              */
-            $('#formSignup').validate({
+            $('#formProfile').validate({
                 rules: {
                     username: 'required',
                     email: {
@@ -53,7 +53,7 @@
 
 {% block body %}
 
-    <h1>Sign up</h1>
+    <h1>Profile</h1>
 
     {% if user.errors is not empty %}
         <p>Errors:</p>
@@ -64,11 +64,11 @@
         </ul>
     {% endif %}
 
-    <form method="post" action="{{ app }}/accounts/create" id="formSignup">
+    <form method="post" id="formProfile">
 
         <div>
             <label for="inputName">Username</label>
-            <input id="inputName" name="username" placeholder="Username" value="{{ user.username }}" autofocus required />
+            <input id="inputName" name="username" placeholder="Username" value="{{ user.username }}" required />
         </div>
         <div>
             <label for="inputEmail">Email address</label>
@@ -83,12 +83,13 @@
             <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat Password" required />
         </div>
         {#<div>#}
-            {#<img id="captcha" src="{{ html }}" alt="CAPTCHA Image" />#}
-            {#<input type="text" name="captcha_code" size="10" maxlength="6" />#}
-            {#<a href="#" onclick="document.getElementById('captcha').src = 'securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>#}
+        {#<img id="captcha" src="{{ html }}" alt="CAPTCHA Image" />#}
+        {#<input type="text" name="captcha_code" size="10" maxlength="6" />#}
+        {#<a href="#" onclick="document.getElementById('captcha').src = 'securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>#}
         {#</div>#}
 
-        <button type="submit">Sign up</button>
+        <button type="submit">Save</button>
+        <a href="{{ app }}/profile/show">Cancel</a>
 
     </form>
 

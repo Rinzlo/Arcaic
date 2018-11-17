@@ -6,9 +6,9 @@
 
     {% if current_user %}
         Hello {{ current_user.username }}.
-         <a href="logout">Log out</a>
+         <a href="{{ app }}/logout">Log out</a>
     {% else %}
-        <a href="login">Login</a> or <a href="accounts/register">Register</a>
+        <a href="{{ app }}/login">Login</a> or <a href="{{ app }}/accounts/register">Register</a>
     {% endif %}
 
 {% endblock %}
