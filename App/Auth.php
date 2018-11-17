@@ -11,6 +11,7 @@ class Auth
 {
 	public static function login(User $user, bool $remember_me): void
 	{
+	    ob_start();
 		// protects from session fixation attacks
 		session_regenerate_id(true);
 		

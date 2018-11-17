@@ -68,7 +68,7 @@ class Accounts extends \Core\Controller
     {
 	    Flash::addMessage('Logout successful');
 	
-	    $this->redirect();
+	    $this->redirect('/'.Config::APP_NAME);
     }
 
     // Registration

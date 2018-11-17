@@ -64,10 +64,11 @@ abstract class Controller
     {
 
     }
-	
-	/**
-	 * Redirect to a different page
-	 */
+
+    /**
+     * Redirect to a different page
+     * @param string $url
+     */
     public function redirect(string $url = '/'.Config::APP_NAME): void
     {
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
