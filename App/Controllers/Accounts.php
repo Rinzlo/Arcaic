@@ -87,18 +87,18 @@ class Accounts extends \Core\Controller
     public function registerAction(): void
     {
 
-        $img = new Securimage();
-        $img->code_length = 6;
-        $img->num_lines   = 5;
-        $img->noise_level = 5;
+//        $img = new Securimage();
+//        $img->code_length = 6;
+//        $img->num_lines   = 5;
+//        $img->noise_level = 5;
 
 //        $img = new Securimage();
 
 
-        View::renderTemplate('Accounts/register.html.twig', [
-            'image' => $img->show(),
-            'html' => Securimage::getCaptchaHtml(),
-        ]);
+        View::renderTemplate('Accounts/register.html.twig'); //, [
+//            'image' => $img->show(),
+//            'html' => Securimage::getCaptchaHtml(),
+//        ]);
     }
 
     public function createAction(): void
