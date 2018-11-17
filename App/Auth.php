@@ -16,6 +16,8 @@ class Auth
 		session_regenerate_id(true);
 		
 		$_SESSION['user_id'] = $user->id;
+
+		$user->loggingIn();
 		
 		if ($remember_me){
 			if($user->rememberLogin()){

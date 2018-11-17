@@ -179,6 +179,11 @@ class User extends Model
 
         return false;
     }
+
+    public function loggingIn()
+    {
+//        $sql = 'SELECT * '
+    }
     
 	public function rememberLogin(): bool
     {
@@ -354,5 +359,42 @@ class User extends Model
 
         $stmt->execute();
 
+    }
+
+    /**
+     * Update the user's profile
+     */
+    public function updateProfile(array $data): bool
+    {
+        $this->username = $data['username'];
+        $this->email = $data['email'];
+        $this->password = $data['password'];
+        $this->password_confirmation = $data['password_confirmation'];
+
+        $this->validate();
+
+        if(empty($this->errors)) {
+
+            $sql = 'UPDATE users
+                    SET username = :username,
+                        email = :email,
+                        password = :password
+                    WHERE id = :id';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            $password = $this->password_hash($this->password, PASSWORD_DEFAULT);
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+
+            return $stmt->execute();
+
+        }
+
+        return false;
     }
 }

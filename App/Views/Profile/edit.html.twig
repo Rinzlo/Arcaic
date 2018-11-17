@@ -8,6 +8,9 @@
     <script>
 
         $(document).ready(function() {
+
+            var userId = '{{ user.id }}';
+
             /**
              * sets up validation on our form
              */
@@ -17,10 +20,16 @@
                     email: {
                         required: true,
                         email: true,
-                        remote: '{{ app }}/accounts/validate-email'
+                        remote: {
+                            url: '{{ app }}/accounts/validate-email',
+                            data: {
+                                ignore_id: function() {
+                                    return userId;
+                                }
+                            }
+                        }
                     },
                     password: {
-                        required: true,
                         minlength: 6,
                         validPassword: true
                     },
@@ -64,7 +73,7 @@
         </ul>
     {% endif %}
 
-    <form method="post" id="formProfile">
+    <form method="post" aciton="/{{ app }}/profile/update" id="formProfile">
 
         <div>
             <label for="inputName">Username</label>
@@ -76,17 +85,16 @@
         </div>
         <div>
             <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" required />
+            <input type="password" id="inputPassword" name="password" placeholder="Password"
+                   aria-describedby="helpBlock"/>
+            <span id="helpBlock">Leave blank to keep current password</span>
         </div>
         <div>
-            <label for="inputPasswordConfirmation">Password</label>
-            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat Password" required />
+            <label for="inputPasswordConfirmation">Password Confirmation</label>
+            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat Password"
+            aria-describedby="helpBlock"/>
+            <span id="helpBlock">Leave blank to keep current password</span>
         </div>
-        {#<div>#}
-        {#<img id="captcha" src="{{ html }}" alt="CAPTCHA Image" />#}
-        {#<input type="text" name="captcha_code" size="10" maxlength="6" />#}
-        {#<a href="#" onclick="document.getElementById('captcha').src = 'securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>#}
-        {#</div>#}
 
         <button type="submit">Save</button>
         <a href="{{ app }}/profile/show">Cancel</a>
