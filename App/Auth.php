@@ -11,7 +11,7 @@ class Auth
 {
 	public static function login(User $user, bool $remember_me): void
 	{
-	    ob_start();
+//	    ob_start();
 		// protects from session fixation attacks
 		session_regenerate_id(true);
 		
@@ -20,7 +20,7 @@ class Auth
 		if ($remember_me){
 			if($user->rememberLogin()){
 				
-				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/'.Config::APP_NAME);
+				setcookie('remember_me', $user->remember_token, $user->expirey_timestamp, '/');
 			}
 		}
 	}
@@ -48,7 +48,7 @@ class Auth
 		// Finally destroy the session
 		session_destroy();
 		
-		static::forgotLogin();
+		static::forgetLogin();
 	}
 	
 	/**
@@ -113,7 +113,7 @@ class Auth
 	/**
 	 * Forget the remembered login, if present
 	 */
-	protected static function forgotLogin()
+	protected static function forgetLogin()
 	{
 		if(isset($_COOKIE['remember_me'])) {
 			

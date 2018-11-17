@@ -22,8 +22,6 @@ set_exception_handler('Core\Error::exceptionHandler');
 
 session_start();
 
-var_dump($_SERVER);
-
 /**
  * Routing
  */
