@@ -10,7 +10,7 @@ class ExampleConfig
      * The name of the app
      * @var string
      */
-    const APP_NAME = 'Archaic';
+    const APP_NAME = 'Arcaic';
 
     /**
      * @var string

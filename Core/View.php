@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Core;
 
 use App\Auth;
+use App\Config;
 
 class View
 {
@@ -51,6 +52,7 @@ class View
             $twig = new \Twig_Environment($loader);
             $twig->addGlobal('current_user', Auth::getUser());
             $twig->addGlobal('flash_messages', \App\Flash::getMessages());
+            $twig->addGlobal('app', '/'.Config::APP_NAME);
         }
 
         echo $twig->render($template, $args);
