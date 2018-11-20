@@ -34,7 +34,7 @@ class Profile extends Authenticated
 
             Flash::addMessage('Changes saved!', Flash::SUCCESS);
 
-            $this->redirect('/profile/show');
+            $this->redirect('/'.Config::APP_NAME.'/profile/show');
 
         } else {
 

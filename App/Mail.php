@@ -7,11 +7,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail
 {
-
-    /**
-     * Send an email
-     * @throws \PHPMailer\PHPMailer\Exception
-     */
+	
+	/**
+	 * Send an email
+	 * @param string $to
+	 * @param string $subject
+	 * @param string $text
+	 * @param string $html
+	 * @throws \PHPMailer\PHPMailer\Exception
+	 */
     public static function send(string $to, string $subject, string $text, string $html)
     {
         //Create a new PHPMailer instance

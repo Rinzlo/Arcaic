@@ -2,8 +2,8 @@
 {% block title %}Sign up{% endblock %}
 
 {% block footer %}
-    <script src="{{ app }}/js/hideShowPassword.min.js"></script>
-    <script src="{{ app }}/js/app.js"></script>
+    <script src="js/hideShowPassword.min.js"></script>
+    <script src="js/app.js"></script>
 
     <script>
 
@@ -17,7 +17,7 @@
                     email: {
                         required: true,
                         email: true,
-                        remote: '{{ app }}/accounts/validate-email'
+                        remote: 'accounts/validate-email'
                     },
                     password: {
                         required: true,
@@ -64,7 +64,7 @@
         </ul>
     {% endif %}
 
-    <form method="post" action="{{ app }}/accounts/create" id="formSignup">
+    <form method="post" action="/{{ app }}/accounts/create" id="formSignup">
 
         <div>
             <label for="inputName">Username</label>

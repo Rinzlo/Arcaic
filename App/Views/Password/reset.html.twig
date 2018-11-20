@@ -2,8 +2,8 @@
 {% block title %}Reset Password{% endblock %}
 
 {% block footer %}
-    <script src="{{ app }}/js/hideShowPassword.min.js"></script>
-    <script src="{{ app }}/js/app.js"></script>
+    <script src="js/hideShowPassword.min.js"></script>
+    <script src="js/app.js"></script>
 
     <script>
 
@@ -58,7 +58,7 @@
         </ul>
     {% endif %}
 
-    <form method="post" action="{{ app }}/password/reset-password" id="formPassword">
+    <form method="post" action="password/reset-password" id="formPassword">
 
         <input type="hidden" name="token" value="{{ token }}">
 

@@ -5,7 +5,7 @@
 
     <h1>Login</h1>
 
-    <form action="{{ app }}/Accounts/loggedin" method="post">
+    <form action="/{{ app }}/Accounts/loggedin" method="post">
         <div>
             <label for="inputEmail">Email address</label>
             <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}"/>
@@ -21,9 +21,9 @@
         </div>
 
         <button type="submit">Log in</button>
-        <a href="{{ app }}/password/forgot">Forgot password?</a>
+        <a href="/{{ app }}/password/forgot">Forgot password?</a>
     </form>
 
-    <a href="{{ app }}/accounts/register">Register</a>
+    <a href="/{{ app }}/accounts/register">Register</a>
 
 {% endblock %}

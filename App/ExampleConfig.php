@@ -60,13 +60,13 @@ class ExampleConfig
      * smtp gmail from email
      * @var string
      */
-    const MAIL_FROM = 'DontContact@gmail.com';
+    const MAIL_FROM = 'DoNotReply@gmail.com';
 
     /**
      * smtp gmail reply to email
      * @var string
      */
-    const MAIL_REPLY_TO = 'DontContact@gmail.com';
+    const MAIL_REPLY_TO = 'DoNotReply@gmail.com';
 
     /**
      * Enable SMTP debugging

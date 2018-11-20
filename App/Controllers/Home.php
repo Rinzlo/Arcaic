@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Auth;
+use App\Config;
 use Core\View;
 
 class Home extends \Core\Controller

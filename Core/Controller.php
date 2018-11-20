@@ -69,7 +69,7 @@ abstract class Controller
      * Redirect to a different page
      * @param string $url
      */
-    public function redirect(string $url = '/'): void
+    public function redirect(string $url = '/'.Config::APP_NAME): void
     {
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
@@ -87,7 +87,7 @@ abstract class Controller
 	    	
 		    Auth::rememberRequestedPage();
 		
-		    $this->redirect('/login');
+		    $this->redirect('/'.Config::APP_NAME.'/login');
 	    }
     }
 }

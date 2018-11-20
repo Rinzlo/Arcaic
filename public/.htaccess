@@ -1,8 +1,5 @@
-Options FollowSymLinks
-# Remove index.php from the request but maintain the query string
 RewriteEngine On
-
-RewriteBase /Arcaic/public/
+RewriteBase /Arcaic
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l

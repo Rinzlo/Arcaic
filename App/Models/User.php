@@ -336,12 +336,13 @@ class User extends Model
 
         Mail::send($this->email, 'Account activation', $text, $html);
     }
-
-    /**
-     * Activate the user account with the specified activation token
-     *
-     * @param string $value Activation token from the URL
-     */
+	
+	/**
+	 * Activate the user account with the specified activation token
+	 *
+	 * @param string $value Activation token from the URL
+	 * @throws \Exception
+	 */
     public static function activate(string $value): void
     {
         $token = new Token($value);

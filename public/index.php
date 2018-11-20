@@ -2,7 +2,6 @@
 //error_reporting(E_STRICT);
 declare(strict_types=1);
 //phpinfo();
-//print_r($_SERVER);
 
 ini_set('session.cookie_lifetime', '864000');   // ten days in seconds
 
@@ -27,6 +26,9 @@ session_start();
 //var_dump(session_get_cookie_params());
 //var_dump($_SERVER);
 //use Securimage;
+
+
+//var_dump($_SERVER);
 
 //require_once dirname(__FILE__) . '/../vendor/dapphp/securimage/securimage.php';
 
