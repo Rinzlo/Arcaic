@@ -13,6 +13,12 @@ class ExampleConfig
     const APP_NAME = 'Arcaic';
 
     /**
+     * Secure protocol or not
+     * @var string
+     */
+    const PROTOCOL = 'http';
+
+    /**
      * @var string
      */
     const DB_HOST = 'localhost';

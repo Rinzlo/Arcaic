@@ -71,7 +71,7 @@ abstract class Controller
      */
     public function redirect(string $url = '/'.Config::APP_NAME): void
     {
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
+        header('Location: ' . Config::PROTOCOL . '://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
     }
 	
