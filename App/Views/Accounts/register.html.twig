@@ -2,8 +2,8 @@
 {% block title %}Sign up{% endblock %}
 
 {% block footer %}
-    <script src="js/hideShowPassword.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="/{{ app }}/public/js/hideShowPassword.min.js"></script>
+    <script src="/{{ app }}/public/js/app.js"></script>
 
     <script>
 
@@ -17,7 +17,7 @@
                     email: {
                         required: true,
                         email: true,
-                        remote: 'accounts/validate-email'
+                        remote: '/{{ app }}/accounts/validate-email'
                     },
                     password: {
                         required: true,
@@ -83,10 +83,13 @@
             <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat Password" required />
         </div>
         {#<div>#}
-            {#<img id="captcha" src="{{ html }}" alt="CAPTCHA Image" />#}
+            {#<img id="captcha" src="/{{ app }}/public/dapphp/securimage/securimage_show.php" alt="CAPTCHA Image" />#}
+
             {#<input type="text" name="captcha_code" size="10" maxlength="6" />#}
-            {#<a href="#" onclick="document.getElementById('captcha').src = 'securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>#}
+            {#<a href="#" onclick="document.getElementById('captcha').src = '/{{ app }}/public/dapphp/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>#}
         {#</div>#}
+
+        <div class="g-recaptcha" data-sitekey="{{ public }}"></div>
 
         <button type="submit">Sign up</button>
 

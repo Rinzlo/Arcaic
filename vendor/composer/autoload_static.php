@@ -27,6 +27,10 @@ class ComposerStaticInit5471aff3078cc1ccde390e36c3a78062
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Securimage\\' => 11,
         ),
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -73,6 +77,10 @@ class ComposerStaticInit5471aff3078cc1ccde390e36c3a78062
         'Securimage\\' => 
         array (
             0 => __DIR__ . '/..' . '/dapphp/securimage',
+        ),
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
         ),
         'Psr\\Http\\Message\\' => 
         array (

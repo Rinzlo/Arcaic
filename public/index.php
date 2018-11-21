@@ -25,12 +25,8 @@ session_start();
 //var_dump($_SESSION);
 //var_dump(session_get_cookie_params());
 //var_dump($_SERVER);
-//use Securimage;
 
-
-//var_dump($_SERVER);
-
-//require_once dirname(__FILE__) . '/../vendor/dapphp/securimage/securimage.php';
+//require_once dirname(__FILE__) . '/public/securimage/securimage.php';
 
 /**
  * Routing

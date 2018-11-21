@@ -31,6 +31,10 @@ class User extends Model
 
     public function __construct(array $data = [])
     {
+        if(isset($_POST['g-recaptcha-response'])){
+            // evaluate captcha to be true
+            unset($_POST['g-recaptcha-response']);
+        }
         foreach ($data as $key => $value){
             $this->$key = $value;
         };

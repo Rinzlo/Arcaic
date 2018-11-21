@@ -6,6 +6,7 @@ namespace App;
 
 use App\Models\RememberedLogin;
 use App\Models\User;
+use ReCaptcha\ReCaptcha;
 
 class Auth
 {
@@ -132,4 +133,24 @@ class Auth
 			setcookie('remember_me', '', time() - 3600);    // set to expire in the past
 		}
 	}
+
+	public static function reCaptchaCheck(): bool
+    {
+        if(isset($_POST['g-recaptcha-response'])) {
+
+            $recaptcha = new ReCaptcha(Config::RECAPTCHA_SECRET);
+            $resp = $recaptcha->verify($_POST['g-recaptcha-response']);
+
+            unset($_POST['g-recaptcha-response']);
+
+            if ($resp->isSuccess()) {
+                // Verified!
+                return true;
+            }
+            // Incorrect
+//            $errors = $resp->getErrorCodes();
+            Flash::addMessage('reCAPTCHA incorrect', Flash::WARNING);
+        }
+        return false;
+    }
 }

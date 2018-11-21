@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-
 use App\Auth;
 use App\Config;
 use App\Flash;
 use App\Models\User;
 use Core\View;
-use Securimage;
+
 
 class Accounts extends \Core\Controller
 {
@@ -28,8 +27,8 @@ class Accounts extends \Core\Controller
      */
     public function loggedinAction(): void
     {
-//    	var_dump($_SERVER);
-//    	exit;
+        if(!Auth::reCaptchaCheck())
+            $this->redirect('/'.Config::APP_NAME.'/login');
     	
         $user = User::authenticate($_POST['email'], $_POST['password']);
         
@@ -106,6 +105,10 @@ class Accounts extends \Core\Controller
 
     public function createAction(): void
     {
+
+        if(!Auth::reCaptchaCheck())
+            $this->redirect('/'.Config::APP_NAME.'/accounts/register');
+
         $user = new User($_POST);
 
         if($user->save()) {

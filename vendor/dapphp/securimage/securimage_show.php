@@ -47,9 +47,18 @@
 // Remove the "//" from the following line for debugging problems
 // error_reporting(E_ALL); ini_set('display_errors', 1);
 
-require_once dirname(__FILE__) . '/securimage.php';
+if (!class_exists('Securimage')) {
+    require_once __DIR__ . '/securimage.php';
+}
 
-$img = new Securimage();
+$options = array();
+
+// set id if supplied to script via HTTP GET
+if (!empty($_GET['id'])) {
+    $options['captchaId'] = $_GET['id'];
+}
+
+$img = new Securimage($options);
 
 // You can customize the image by making changes below, some examples are included - remove the "//" to uncomment
 
@@ -70,10 +79,5 @@ $img = new Securimage();
 
 // see securimage.php for more options that can be set
 
-// set namespace if supplied to script via HTTP GET
-if (!empty($_GET['namespace'])) $img->setNamespace($_GET['namespace']);
-
 
 $img->show();  // outputs the image and content headers to the browser
-// alternate use:
-// $img->show('/path/to/background_image.jpg');

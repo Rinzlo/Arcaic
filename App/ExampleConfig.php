@@ -36,13 +36,13 @@ class ExampleConfig
      * Show or hide error messages on screen
      * @var bool
      */
-    const SHOW_ERRORS = true;
+    const SHOW_ERRORS = false;
 	
 	/**
 	 * Secret key for hashing
 	 * @var string
 	 */
-    const SECRET_KEY = 'NbXZit5QuT7kTbBE0CO3dxTh190zSRLW';
+    const SECRET_KEY = 'secret_hash';
 
     /**
      * smtp gmail username
@@ -76,4 +76,16 @@ class ExampleConfig
      * @var int
      */
     const SMTP_DEBUG = 0;
+
+    /**
+     * re-captcha secret key
+     * @var string
+     */
+    const RECAPTCHA_SECRET = 'secret_key';
+
+    /**
+     * re-captcha public key
+     * @var string
+     */
+    const RECAPTCHA_PUBLIC = 'public_key';
 }
