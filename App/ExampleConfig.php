@@ -14,9 +14,9 @@ class ExampleConfig
 
     /**
      * Secure protocol or not
-     * @var string
+     * @var bool
      */
-    const PROTOCOL = 'http';
+    const SSL = false;
 
     /**
      * @var string
