@@ -333,7 +333,7 @@ class User extends Model
      */
     public function sendActivationEmail(): void
     {
-        $url = 'http://' . $_SERVER['HTTP_HOST']. '/accounts/activated/' . $this->activation_token;
+        $url = 'http://' . $_SERVER['HTTP_HOST']. '/'.Config::APP_NAME. '/accounts/activated/' . $this->activation_token;
 
         $text = View::getTemplate('Accounts/activation_email.txt.twig', ['url' => $url]);
         $html = View::getTemplate('Accounts/activation_email.html.twig', ['url' => $url]);
