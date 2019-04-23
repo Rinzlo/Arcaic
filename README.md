@@ -1,5 +1,5 @@
 # Arcaic
-PHP MVC Framework
+PHP MVC Framework built from Dave Hollingworth's php tutorial.
 <p>
     Make sure to copy the ExampleConfig.php file and change the 
     current configs for yourself. Also make sure to change your new
